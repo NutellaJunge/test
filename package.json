@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NutellaJunge/test"
+    "url": "git+https://github.com/NutellaJunge/test.git"
   },
   "keywords": [
     "homebridge-plugin"
