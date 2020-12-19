@@ -54,29 +54,31 @@ AdvancedHttpTemperatureHumidity.prototype = {
         this.httpRequest(this.url, "", this.http_method, this.username, this.password, this.sendimmediately, function (error, response, responseBody) {
 
             if (error) {
-                this.log('Get Temperature failed: %s', error.message);
-                callback(error);
+		this.log('Get Temperature failed: %s', error.message);
+		callback(error);
             } else {
-                this.log(responseBody);
-                var info = JSON.parse(responseBody);
+		if (responseBody !== undefined) {
+			this.log(responseBody);
+			var info = JSON.parse(responseBody);
 
-                var temperature = parseFloat(info.temperature);
+			var temperature = parseFloat(info.temperature);
 
-                if (this.humidityService !== false) {
-                    var humidity = parseFloat(info.humidity)
+			if (this.humidityService !== false) {
+			    var humidity = parseFloat(info.humidity)
 
-                    this.humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, humidity);
-                    this.humidity = humidity;
-                }
+			    this.humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, humidity);
+			    this.humidity = humidity;
+			}
 
-                callback(null, temperature);
+			callback(null, temperature);
+		}
+		callback()
             }
         }.bind(this));
     },
 
     identify: function (callback) {
-        this.log("Identify requested!");
-        callback(); // success
+        callback();
     },
 
     getServices: function () {
