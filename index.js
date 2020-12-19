@@ -94,6 +94,10 @@ AdvancedHttpTemperatureHumidity.prototype = {
             .getCharacteristic(Characteristic.CurrentTemperature)
             .on('get', this.getState.bind(this));
         services.push(temperatureService);
+        
+        setInterval(function () {
+		  this._getStatus(function () {})
+		}.bind(this), 1000)
 
         if (this.disableHumidity !== true) {
             this.humidityService = new Service.HumiditySensor(this.name);
