@@ -62,7 +62,6 @@ AdvancedHttpTemperatureHumidity.prototype = {
 		callback(error);
             } else {
 		if (responseBody !== "") {
-			this.log(responseBody);
 			var info = JSON.parse(responseBody);
 
 			var temperature = parseFloat(info.temperature);
