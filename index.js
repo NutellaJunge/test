@@ -101,6 +101,8 @@ AdvancedHttpTemperatureHumidity.prototype = {
             .on('get', this.getState.bind(this));
         services.push(temperatureService);
         
+	this.getState(function () {});    
+	
         setInterval(function () {
 		  this.getState(function () {})
 		}.bind(this), 1000)
@@ -112,7 +114,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
                 .setProps({minValue: 0, maxValue: 100})
                 .on('get', this.getStateHumidity.bind(this));
             services.push(this.humidityService);
-        }
+	}
 
         return services;
     }
