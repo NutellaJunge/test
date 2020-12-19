@@ -42,7 +42,11 @@ AdvancedHttpTemperatureHumidity.prototype = {
                 }
             },
             function (error, response, body) {
-                callback(error, response, body)
+		try {
+                	callback(error, response, body)
+		} catch(e) {
+			
+		}
             })
     },
 
