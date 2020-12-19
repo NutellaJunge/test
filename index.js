@@ -57,7 +57,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
 		this.log('Get Temperature failed: %s', error.message);
 		callback(error);
             } else {
-		if (responseBody !== undefined) {
+		if (responseBody !== "") {
 			this.log(responseBody);
 			var info = JSON.parse(responseBody);
 
