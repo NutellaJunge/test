@@ -67,6 +67,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
 			var info = JSON.parse(responseBody);
 
 			var temperature = parseFloat(info.temperature);
+			this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature).updateValue(temperature);
 
 			if (this.humidityService !== false) {
 			    var humidity = parseFloat(info.humidity)
@@ -75,7 +76,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
 			    this.humidity = humidity;
 			}
 
-			callback(null, temperature);
+			callback();
 		}
 		callback()
             }
