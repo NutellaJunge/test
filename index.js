@@ -109,6 +109,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
         setInterval(function () {
 		  this.getState(function () {})
 		}.bind(this), this.callspeed*1000);
+	    this.log(this.callspeed);
 
         if (this.disableHumidity !== true) {
             this.humidityService = new Service.HumiditySensor(this.name);
