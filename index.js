@@ -13,6 +13,7 @@ function AdvancedHttpTemperatureHumidity(log, config) {
 
     // Config
     this.url = config["url"];
+    this.callspeed = config["callspeed"] || 1;
     this.http_method = config["http_method"] || "GET";
     this.sendimmediately = config["sendimmediately"] || false;
     this.username = config["username"] || "";
@@ -107,7 +108,7 @@ AdvancedHttpTemperatureHumidity.prototype = {
 	
         setInterval(function () {
 		  this.getState(function () {})
-		}.bind(this), 1000)
+		}.bind(this), this.callspeed*1000);
 
         if (this.disableHumidity !== true) {
             this.humidityService = new Service.HumiditySensor(this.name);
